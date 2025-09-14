@@ -102,8 +102,3 @@ class PageBuilder:
     def save(self) -> None:
         """Finalize and save the PDF file."""
         self.canvas.save()
-
-
-page_builder = PageBuilder()
-page_builder.draw_text(20, 140, "Hello Mobile PDF!")
-page_builder.save()

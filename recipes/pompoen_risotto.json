@@ -1,0 +1,80 @@
+{
+  "title": "Pompoenrisotto met spek, champignons en kruiden",
+  "description": "Een romige pompoenrisotto met spek, champignons en kruiden, geschikt voor 4 personen.",
+  "servings": 4,
+  "ingredients": [
+    "300 g risottorijst",
+    "400 g pompoen, blokjes",
+    "150 g champignons, in plakjes",
+    "100 g spekjes",
+    "1 ui, fijngehakt",
+    "2 teentjes knoflook, gehakt",
+    "1 liter groentebouillon (warm houden)",
+    "100 ml witte wijn",
+    "1 tl paprikapoeder",
+    "1 tl gedroogde tijm + oregano + rozemarijn",
+    "Verse peterselie, gehakt",
+    "50 g Parmezaanse kaas",
+    "Handje rucola",
+    "1 el boter",
+    "Olijfolie, zout, peper"
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Soffritto (basis maken)",
+      "steps": [
+        {"step_number": 1, "text": "Verhit wat olijfolie in een ruime pan."},
+        {"step_number": 2, "text": "Bak de spekjes knapperig en schep ze eruit, zet apart."},
+        {"step_number": 3, "text": "Voeg de pompoenblokjes toe, bak 5 minuten mee en zet ook apart."},
+        {"step_number": 4, "text": "Voeg zo nodig nog een scheut olie toe. Fruit de ui en knoflook op laag vuur tot ze zacht en glazig zijn. Dit is je soffritto."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Tostatura (rijst aanzetten)",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de risottorijst toe aan de soffritto."},
+        {"step_number": 2, "text": "Roer 2–3 minuten tot de korrels van wit naar licht glazig kleuren."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Umidità (afblussen met wijn)",
+      "steps": [
+        {"step_number": 1, "text": "Giet de witte wijn erbij."},
+        {"step_number": 2, "text": "Blijf roeren tot de wijn grotendeels verdampt is."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Brodo (bouillon toevoegen)",
+      "steps": [
+        {"step_number": 1, "text": "Voeg nu soeplepel voor soeplepel hete bouillon toe."},
+        {"step_number": 2, "text": "Roer steeds goed en wacht tot het vocht bijna is opgenomen voordat je de volgende lepel toevoegt."},
+        {"step_number": 3, "text": "Herhaal dit ongeveer 18–20 minuten."},
+        {"step_number": 4, "text": "Na zo’n 10 minuten: champignons, pompoen en spekjes toevoegen."},
+        {"step_number": 5, "text": "Breng op smaak met tijm, oregano, rozemarijn, paprikapoeder, zout en peper."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Mantecatura (afronden en binden)",
+      "steps": [
+        {"step_number": 1, "text": "Controleer of de rijst gaar is: zacht van buiten, nog een lichte bite van binnen (al dente)."},
+        {"step_number": 2, "text": "Haal de pan van het vuur."},
+        {"step_number": 3, "text": "Roer de boter en Parmezaanse kaas erdoor → dit maakt de risotto los, glanzend en romig."},
+        {"step_number": 4, "text": "Laat 1 minuut rusten met een deksel op de pan."}
+      ]
+    },
+    {
+      "section_number": 6,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep de risotto op borden."},
+        {"step_number": 2, "text": "Werk af met verse peterselie en een handje rucola."},
+        {"step_number": 3, "text": "Serveer meteen."}
+      ]
+    }
+  ]
+}
