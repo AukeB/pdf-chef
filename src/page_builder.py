@@ -14,7 +14,7 @@ class PageBuilder:
         output_directory_path: str = "pdfs",
         output_file_name: str = "document.pdf",
         page_width: float = 90 * mm,
-        page_height: float = 160 * mm,
+        page_height: float = 1000 * mm,
         font_name: str = "Helvetica",
         font_size: int = 16,
     ) -> None:
