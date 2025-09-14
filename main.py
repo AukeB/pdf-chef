@@ -1,5 +1,13 @@
+""" """
+
+from src.mobile_recipe_builder import RecipePDFBuilder
+
+
 def main():
-    print("Hello from pdf-chef!")
+    recipe_pdf_builder = RecipePDFBuilder()
+
+    print(recipe_pdf_builder)
+
 
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 """Module for creating recipes in .pdf format optimized for mobile screen format."""
 
+import json
+
 from src.page_builder import PageBuilder
 
 
@@ -9,6 +11,7 @@ class RecipePDFBuilder:
     def __init__(
         self,
         output_file_name: str = "recipes.pdf",
+        recipe_file_path: str = "recipes/pompoen_risotto.json",
         top_margin: int = 20,
         bottom_margin: int = 20,
         line_spacing: int = 15,
@@ -22,11 +25,29 @@ class RecipePDFBuilder:
             line_spacing (int): Vertical space in points between lines of text.
         """
         self.page = PageBuilder(output_file_name=output_file_name)
+        self.recipe_file_path = recipe_file_path
+        self.recipe = self._load_json_file(file_path=self.recipe_file_path)
+
+        print(self.recipe)
 
         self.top_margin = top_margin
         self.bottom_margin = bottom_margin
         self.line_spacing = line_spacing
         self.y_current = self.page.page_height - self.top_margin
+
+    def _load_json_file(self, file_path: str) -> dict:
+        """Load a JSON file and return its contents as a dictionary.
+
+        Args:
+            file_path (str): Path to the JSON file.
+
+        Returns:
+            dict: The parsed JSON content, or an empty dict if file not found.
+        """
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        return data
 
     def _check_space(self, required_height: float) -> None:
         """Check if the section fits on the current page; start new page if not."""
@@ -45,15 +66,14 @@ class RecipePDFBuilder:
         """
         if name == "title":
             self._draw_title(kwargs["text"])
-        elif name == "description":
-            self._draw_paragraph(kwargs["text"])
-        elif name == "stats":
-            self._draw_stats(kwargs["stats"])
-        elif name == "ingredients":
-            self._draw_list(kwargs["items"], title="Ingredients")
-        elif name == "instructions":
-            self._draw_list(kwargs["steps"], title="Instructions")
-        # Add other sections as needed
+        # elif name == "description":
+        #     self._draw_paragraph(kwargs["text"])
+        # elif name == "stats":
+        #     self._draw_stats(kwargs["stats"])
+        # elif name == "ingredients":
+        #     self._draw_list(kwargs["items"], title="Ingredients")
+        # elif name == "instructions":
+        #     self._draw_list(kwargs["steps"], title="Instructions")
 
     def _draw_title(self, text: str) -> None:
         self._check_space(40)
