@@ -78,7 +78,7 @@ class RecipePDFBuilder:
             max_width=self.max_text_width,
             font_name="Helvetica-Bold",
             font_size=18,
-            line_spacing=self.line_spacing
+            line_spacing=self.line_spacing,
         )
 
     def _draw_list(self, text: str) -> None:

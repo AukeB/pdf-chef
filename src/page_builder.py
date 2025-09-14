@@ -98,7 +98,7 @@ class PageBuilder:
             )
 
         self.canvas.drawString(x, y, text)
-    
+
     def draw_text_wrapped(
         self,
         x: float,
@@ -107,7 +107,7 @@ class PageBuilder:
         max_width: float,
         font_name: str | None = None,
         font_size: int | None = None,
-        line_spacing: float | None = None
+        line_spacing: float | None = None,
     ) -> float:
         """
         Draw text at a given position with word wrapping if it exceeds max_width.
@@ -150,8 +150,6 @@ class PageBuilder:
             y_current -= spacing
 
         return y_current
-
-
 
     def save(self) -> None:
         """Finalize and save the PDF file."""
