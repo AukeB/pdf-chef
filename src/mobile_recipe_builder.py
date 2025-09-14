@@ -28,8 +28,6 @@ class RecipePDFBuilder:
         self.recipe_file_path = recipe_file_path
         self.recipe = self._load_json_file(file_path=self.recipe_file_path)
 
-        print(self.recipe)
-
         self.top_margin = top_margin
         self.bottom_margin = bottom_margin
         self.line_spacing = line_spacing
@@ -82,33 +80,39 @@ class RecipePDFBuilder:
         )
         self.y_current -= 40
 
-    def _draw_paragraph(self, text: str) -> None:
-        # Rough estimate: each line ~15 pts
-        lines = text.split("\n")
-        required_height = len(lines) * self.line_spacing
-        self._check_space(required_height)
-        for line in lines:
-            self.page.draw_text(20, self.y_current, line)
-            self.y_current -= self.line_spacing
-        self.y_current -= self.line_spacing  # extra space after paragraph
+    # def _draw_paragraph(self, text: str) -> None:
+    #     # Rough estimate: each line ~15 pts
+    #     lines = text.split("\n")
+    #     required_height = len(lines) * self.line_spacing
+    #     self._check_space(required_height)
+    #     for line in lines:
+    #         self.page.draw_text(20, self.y_current, line)
+    #         self.y_current -= self.line_spacing
+    #     self.y_current -= self.line_spacing  # extra space after paragraph
 
-    def _draw_stats(self, stats: dict) -> None:
-        line = " | ".join([f"{k}: {v}" for k, v in stats.items()])
-        self._check_space(20)
-        self.page.draw_text(20, self.y_current, line)
-        self.y_current -= 30
+    # def _draw_stats(self, stats: dict) -> None:
+    #     line = " | ".join([f"{k}: {v}" for k, v in stats.items()])
+    #     self._check_space(20)
+    #     self.page.draw_text(20, self.y_current, line)
+    #     self.y_current -= 30
 
-    def _draw_list(self, items: list, title: str) -> None:
-        self._check_space(20 + len(items) * self.line_spacing)
-        self.page.draw_text(
-            20, self.y_current, title, font_name="Helvetica-Bold", font_size=14
-        )
-        self.y_current -= 20
-        for item in items:
-            self.page.draw_text(30, self.y_current, f"- {item}")
-            self.y_current -= self.line_spacing
-        self.y_current -= self.line_spacing
+    # def _draw_list(self, items: list, title: str) -> None:
+    #     self._check_space(20 + len(items) * self.line_spacing)
+    #     self.page.draw_text(
+    #         20, self.y_current, title, font_name="Helvetica-Bold", font_size=14
+    #     )
+    #     self.y_current -= 20
+    #     for item in items:
+    #         self.page.draw_text(30, self.y_current, f"- {item}")
+    #         self.y_current -= self.line_spacing
+    #     self.y_current -= self.line_spacing
 
     def save(self) -> None:
         """Finalize and save the recipe PDF."""
         self.page.save()
+
+    def build(self) -> None:
+        """ """
+
+        for recipe_section, text in self.recipe.items():
+            print(recipe_section, text)
