@@ -2,6 +2,8 @@
 
 import json
 
+
+from reportlab.lib.utils import ImageReader
 from src.page_builder import PageBuilder
 
 
@@ -16,7 +18,8 @@ class RecipePDFBuilder:
         bottom_margin: int = 20,
         side_margin: int = 20,
     ) -> None:
-        """Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
+        """
+        Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
 
         Args:
             output_file_name (str): Name of the PDF file to create.
@@ -63,10 +66,41 @@ class RecipePDFBuilder:
             name (str): Section type (e.g., "title", "ingredients").
             **kwargs: Content depending on section type.
         """
-        if name == "title":
+        if name == "cover_image":
+            self._draw_cover_image(self.recipe[name])
+        elif name == "title":
             self._draw_title(self.recipe[name])
         elif name == "ingredients":
             self._draw_list(self.recipe[name])
+
+    def _draw_cover_image(self, image_path: str, fixed_height: float = 80) -> None:
+        """
+        Draw a cover image centered on the page with a fixed height.
+
+        Args:
+            image_path (str): Path to the image file.
+            fixed_height (float): Height of the image in points.
+        """
+        image = ImageReader(image_path)
+        img_width, img_height = image.getSize()
+
+        scale = fixed_height / img_height
+        scaled_width = img_width * scale
+        scaled_height = fixed_height
+
+        x_centered = max(0, (self.page.page_width - scaled_width) / 2)
+
+        self.page.canvas.drawImage(
+            image_path,
+            x_centered,
+            self.y_current - scaled_height,
+            width=scaled_width,
+            height=scaled_height,
+            preserveAspectRatio=True,
+            mask="auto",
+        )
+
+        self.y_current -= scaled_height
 
     def _draw_title(self, text: str) -> None:
         self.y_current = self.page.draw_text_wrapped(
