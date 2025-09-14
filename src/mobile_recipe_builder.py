@@ -32,6 +32,7 @@ class RecipePDFBuilder:
         self.top_margin = top_margin
         self.bottom_margin = bottom_margin
         self.side_margin = side_margin
+        self.max_text_width = self.page.page_width - 2 * self.side_margin
         self.line_spacing = line_spacing
         self.y_current = self.page.page_height - self.top_margin
 
@@ -70,15 +71,15 @@ class RecipePDFBuilder:
         #     self._draw_list(kwargs["items"], title="Ingredients")
 
     def _draw_title(self, text: str, required_space: int = 40) -> None:
-        self._check_space(required_space)
-        self.page.draw_text(
-            self.side_margin,
-            self.y_current,
-            text,
+        self.y_current = self.page.draw_text_wrapped(
+            x=self.side_margin,
+            y=self.y_current,
+            text=text,
+            max_width=self.max_text_width,
             font_name="Helvetica-Bold",
             font_size=18,
+            line_spacing=self.line_spacing
         )
-        self.y_current -= required_space
 
     def _draw_list(self, text: str) -> None:
         """ """

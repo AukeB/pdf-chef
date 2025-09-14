@@ -98,6 +98,60 @@ class PageBuilder:
             )
 
         self.canvas.drawString(x, y, text)
+    
+    def draw_text_wrapped(
+        self,
+        x: float,
+        y: float,
+        text: str,
+        max_width: float,
+        font_name: str | None = None,
+        font_size: int | None = None,
+        line_spacing: float | None = None
+    ) -> float:
+        """
+        Draw text at a given position with word wrapping if it exceeds max_width.
+
+        Args:
+            x (float): X coordinate in points.
+            y (float): Y coordinate in points (top of text).
+            text (str): Text to draw.
+            max_width (float): Maximum width in points before wrapping.
+            font_name (str | None): Optional font override.
+            font_size (int | None): Optional font size override.
+            line_spacing (float | None): Optional line spacing override.
+
+        Returns:
+            float: The new Y position after drawing the wrapped text.
+        """
+        font_name = font_name or self.font_name
+        font_size = font_size or self.font_size
+        spacing = line_spacing or (font_size * 1.2)
+
+        self.canvas.setFont(font_name, font_size)
+
+        words = text.split()
+        current_line = ""
+        y_current = y
+
+        for word in words:
+            test_line = f"{current_line} {word}".strip()
+            test_width = self.canvas.stringWidth(test_line, font_name, font_size)
+
+            if test_width <= max_width:
+                current_line = test_line
+            else:
+                self.canvas.drawString(x, y_current, current_line)
+                y_current -= spacing
+                current_line = word
+
+        if current_line:
+            self.canvas.drawString(x, y_current, current_line)
+            y_current -= spacing
+
+        return y_current
+
+
 
     def save(self) -> None:
         """Finalize and save the PDF file."""
