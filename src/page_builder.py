@@ -107,7 +107,7 @@ class PageBuilder:
         max_width: float,
         font_name: str | None = None,
         font_size: int | None = None,
-        line_spacing: float | None = None,
+        line_spacing_factor: float = 1.2,
     ) -> float:
         """
         Draw text at a given position with word wrapping if it exceeds max_width.
@@ -126,7 +126,7 @@ class PageBuilder:
         """
         font_name = font_name or self.font_name
         font_size = font_size or self.font_size
-        spacing = line_spacing or (font_size * 1.2)
+        spacing = font_size * line_spacing_factor
 
         self.canvas.setFont(font_name, font_size)
 

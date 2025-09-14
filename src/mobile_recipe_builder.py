@@ -15,7 +15,6 @@ class RecipePDFBuilder:
         top_margin: int = 20,
         bottom_margin: int = 20,
         side_margin: int = 20,
-        line_spacing: int = 15,
     ) -> None:
         """Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
 
@@ -33,7 +32,6 @@ class RecipePDFBuilder:
         self.bottom_margin = bottom_margin
         self.side_margin = side_margin
         self.max_text_width = self.page.page_width - 2 * self.side_margin
-        self.line_spacing = line_spacing
         self.y_current = self.page.page_height - self.top_margin
 
     def _load_json_file(self, file_path: str) -> dict:
@@ -67,10 +65,10 @@ class RecipePDFBuilder:
         """
         if name == "title":
             self._draw_title(self.recipe[name])
-        # elif name == "ingredients":
-        #     self._draw_list(kwargs["items"], title="Ingredients")
+        elif name == "ingredients":
+            self._draw_list(self.recipe[name])
 
-    def _draw_title(self, text: str, required_space: int = 40) -> None:
+    def _draw_title(self, text: str) -> None:
         self.y_current = self.page.draw_text_wrapped(
             x=self.side_margin,
             y=self.y_current,
@@ -78,17 +76,36 @@ class RecipePDFBuilder:
             max_width=self.max_text_width,
             font_name="Helvetica-Bold",
             font_size=18,
-            line_spacing=self.line_spacing,
         )
 
-    def _draw_list(self, text: str) -> None:
-        """ """
-        pass  # To be written
+    def _draw_list(
+        self,
+        items: list[str],
+        font_size: int = 14,
+        bullet: str = "- ",
+        bullet_spacing_factor: float = 0.2,
+    ) -> None:
+        """Draw a list of items (e.g., ingredients) on the PDF page.
+
+        Args:
+            items (list[str]): List of strings to render as a vertical list.
+        """
+        for item in items:
+            text = f"{bullet}{item}"
+
+            self.y_current = self.page.draw_text_wrapped(
+                x=self.side_margin,
+                y=self.y_current,
+                text=text,
+                max_width=self.max_text_width,
+                font_size=font_size,
+            )
+
+            self.y_current -= font_size * bullet_spacing_factor
 
     def build(self) -> None:
         """ """
-        for recipe_section, text in self.recipe.items():
-            if recipe_section in ["title"]:
-                self.add_section(name=recipe_section)
+        for recipe_section, _ in self.recipe.items():
+            self.add_section(name=recipe_section)
 
         self.page.save()
