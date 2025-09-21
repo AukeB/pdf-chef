@@ -131,8 +131,8 @@ class PageBuilder:
         font_name: str | None = None,
         font_size: int | None = None,
         background_color: tuple | None = None,
-        padding_top: float = 0,
-        padding_bottom: float = 0,
+        margin_top: float = 0,
+        margin_bottom: float = 0,
         font_shift_factor: float = 0,
     ) -> float:
         """
@@ -155,9 +155,9 @@ class PageBuilder:
         )
 
         block_height = (
-            text_height + padding_top + padding_bottom + font_spacing_correction
+            text_height + margin_top + margin_bottom + font_spacing_correction
         )
-        y_block = y_position - padding_top - text_height - padding_bottom
+        y_block = y_position - margin_top - text_height - margin_bottom
 
         if background_color:
             self.canvas.setFillColorRGB(*background_color)
@@ -171,7 +171,7 @@ class PageBuilder:
             )
             self.canvas.setFillColorRGB(0, 0, 0)
 
-        y_draw = y_position - padding_top
+        y_draw = y_position - margin_top
         for line in lines:
             self.canvas.drawString(x, y_draw, line)
             y_draw -= line_spacing

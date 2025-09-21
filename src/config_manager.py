@@ -1,12 +1,17 @@
 """Module for loading the configuration files."""
 
 import yaml
+
+from pathlib import Path
 from pydantic import BaseModel
 from typing import Literal
 
 
-
 class Config(BaseModel):
+    class IO(BaseModel):
+        output_file_name: str
+        input_recipe_file_path: str
+
     class DocumentMargins(BaseModel):
         left: int
         right: int
@@ -19,12 +24,15 @@ class Config(BaseModel):
         image_height: int
 
     class Font(BaseModel):
+        font_name: str
+        font_size: int
         font_shift_factor: float
 
     class Colors(BaseModel):
         color_mode: Literal["repeating"]
         palette: list
 
+    io: IO
     document_margins: DocumentMargins
     section_margins: SectionMargins
     layout_cover: LayoutCover
@@ -35,7 +43,8 @@ class Config(BaseModel):
 class ConfigManager:
     """Utility class for loading and validating YAML config files."""
 
-    def load_config_file(self, path: str) -> Config:
+    def load_config_file(self, path: str | Path) -> Config:
+        path = str(path)
         """
         Load and validate a YAML config file.
 
