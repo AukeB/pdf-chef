@@ -2,64 +2,44 @@
 
 import os
 
-from reportlab.lib.units import mm
+from pathlib import Path
+from typing import Tuple
 from reportlab.pdfgen import canvas
+from reportlab.lib.units import mm
+
+from src.config_manager import Config
 
 
 class PageBuilder:
     """Utility class for building simple PDFs with custom page sizes using ReportLab"""
 
-    def __init__(
-        self,
-        output_directory_path: str = "pdfs",
-        output_file_name: str = "document.pdf",
-        page_width: float = 90 * mm,
-        page_height: float = 1000 * mm,
-        font_name: str = "Helvetica",
-        font_size: int = 16,
-        line_spacing_factor: float = 1.2,
-    ) -> None:
+    def __init__(self, config: Config) -> None:
         """
         Initialize a PageBuilder instance.
-
-        Args:
-            output_directory_path (str): Directory where the PDF will be saved.
-            output_file_name (str): Name of the PDF file.
-            page_width (float): Width of the page in points.
-            page_height (float): Height of the page in points.
-            font_name (str): Default font name.
-            font_size (int): Default font size.
         """
-        # Paths
-        self.output_directory_path = output_directory_path
-        self.output_file_name = output_file_name
-        self.output_file_path = os.path.join(
-            self.output_directory_path, self.output_file_name
+        # Variables
+        self.config = config
+        self.output_file_path = self.config.io.output_file_path
+        self.max_line_width = (
+            self.config.page.width * mm
+            - self.config.document_margins.left
+            - self.config.document_margins.right
         )
-        self._create_directory(directory_path=self.output_directory_path)
 
-        # Page settings
-        self.page_width = page_width
-        self.page_height = page_height
-        self.page_size = (self.page_width, self.page_height)
-
-        # Font settings
-        self.font_name = font_name
-        self.font_size = font_size
-
-        # Canvas
-        self.line_spacing_factor = line_spacing_factor
+        # Actions
+        self._create_output_directory()
         self.canvas = self._initialize_document()
         self._set_font()
 
-    def _create_directory(self, directory_path: str) -> None:
+    def _create_output_directory(self) -> None:
         """
         Create the output directory if it does not exist.
 
         Args:
             directory_path (str): Path of the directory to create.
         """
-        os.makedirs(directory_path, exist_ok=True)
+        output_directory_path = Path(self.output_file_path).parent
+        os.makedirs(output_directory_path, exist_ok=True)
 
     def _initialize_document(
         self,
@@ -70,16 +50,21 @@ class PageBuilder:
         Returns:
             canvas.Canvas: A ReportLab canvas object.
         """
-        return canvas.Canvas(self.output_file_path, pagesize=self.page_size)
+        page_size = (self.config.page.width * mm, self.config.page.height * mm)
+        return canvas.Canvas(self.output_file_path, pagesize=page_size)
 
-    def _set_font(self) -> None:
+    def _set_font(
+        self, font_name: str | None = None, font_size: int | None = None
+    ) -> None:
         """Set the default font for the canvas."""
-        self.canvas.setFont(self.font_name, self.font_size)
+        font_name = font_name or self.config.font.font_name
+        font_size = font_size or self.config.font.font_size
+
+        self.canvas.setFont(font_name, font_size)
 
     def _measure_text_block(
         self,
         text: str,
-        max_line_width: float,
         font_name: str | None = None,
         font_size: int | None = None,
     ) -> tuple[list[str], float]:
@@ -88,7 +73,6 @@ class PageBuilder:
 
         Args:
             text (str): Text to measure.
-            max_line_width (float): Max width before wrapping.
             font_name (str | None): Optional font override.
             font_size (int | None): Optional font size override.
 
@@ -97,9 +81,10 @@ class PageBuilder:
                 - Wrapped lines of text
                 - Total text height (in points)
         """
-        font_name = font_name or self.font_name
-        font_size = font_size or self.font_size
-        line_spacing = font_size * self.line_spacing_factor
+        font_name = font_name or self.config.font.font_name
+        font_size = font_size or self.config.font.font_size
+
+        line_height = font_size * self.config.font.line_height_factor
 
         self.canvas.setFont(font_name, font_size)
 
@@ -111,7 +96,7 @@ class PageBuilder:
             line = f"{current_line} {word}".strip()
             line_width = self.canvas.stringWidth(line, font_name, font_size)
 
-            if line_width <= max_line_width:
+            if line_width <= self.max_line_width:
                 current_line = line
             else:
                 lines.append(current_line)
@@ -119,29 +104,36 @@ class PageBuilder:
         if current_line:
             lines.append(current_line)
 
-        text_height = len(lines) * line_spacing
+        text_height = len(lines) * line_height
+
         return lines, text_height
 
     def draw_text(
         self,
+        text: str,
         x: float,
         y: float,
-        text: str,
-        max_line_width: float,
+        background_color: Tuple[float, float, float],
+        max_line_width: float | None = None,
         font_name: str | None = None,
         font_size: int | None = None,
-        background_color: tuple | None = None,
-        margin_top: float = 0,
-        margin_bottom: float = 0,
-        font_shift_factor: float = 0,
+        line_height_factor: float | None = None,
+        margin_top: float | None = None,
+        margin_bottom: float | None = None,
+        font_shift_factor: float | None = None,
     ) -> float:
         """
         Draw text at a given position with word wrapping and optional background.
         """
-        font_name = font_name or self.font_name
-        font_size = font_size or self.font_size
-        line_spacing = font_size * self.line_spacing_factor
+        max_line_width = max_line_width or self.max_line_width
+        font_name = font_name or self.config.font.font_name
+        font_size = font_size or self.config.font.font_size
+        line_height_factor = line_height_factor or self.config.font.line_height_factor
+        margin_top = margin_top or self.config.section_margins.top
+        margin_bottom = margin_bottom or self.config.section_margins.bottom
+        font_shift_factor = font_shift_factor or self.config.font.font_shift_factor
 
+        line_height = font_size * line_height_factor
         self.canvas.setFont(font_name, font_size)
 
         font_spacing_correction = font_shift_factor * font_size
@@ -149,7 +141,6 @@ class PageBuilder:
 
         lines, text_height = self._measure_text_block(
             text=text,
-            max_line_width=max_line_width,
             font_name=font_name,
             font_size=font_size,
         )
@@ -164,7 +155,7 @@ class PageBuilder:
             self.canvas.rect(
                 x=0,
                 y=y_block,
-                width=self.page_width,
+                width=self.config.page.width * mm,
                 height=block_height,
                 stroke=0,
                 fill=1,
@@ -174,9 +165,17 @@ class PageBuilder:
         y_draw = y_position - margin_top
         for line in lines:
             self.canvas.drawString(x, y_draw, line)
-            y_draw -= line_spacing
+            y_draw -= line_height
 
         return y - block_height
+
+    def draw_horizontal_line(
+        self, y: float, line_color: Tuple[float, float, float] | None = None
+    ) -> None:
+        line_color = line_color or self.config.colors.line_color
+
+        self.canvas.setStrokeColorRGB(*line_color)
+        self.canvas.line(0, y, self.config.page.width * mm, y)
 
     def save(self) -> None:
         """Finalize and save the PDF file."""

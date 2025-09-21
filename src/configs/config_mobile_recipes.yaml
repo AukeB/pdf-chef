@@ -1,6 +1,10 @@
 io:
-  output_file_name: recipes.pdf
+  output_file_path: pdfs/recipes.pdf
   input_recipe_file_path: recipes/pompoen_risotto.json
+
+page:
+  width: 90 # Unit: mm
+  height: 1000 # Will be cutt off to right value after document generation. Unit: mm.
 
 document_margins:
   left: 20  # Unit: pixels
@@ -17,9 +21,11 @@ font:
   font_name: Helvetica
   font_size: 16
   font_shift_factor: 1.8
+  line_height_factor: 1.2
 
 colors:
-  color_mode: "repeating"  # Allowed values: ["repeating"]
-  palette:
+  background_color_mode: "repeating"  # Allowed values: ["repeating"]
+  background_color_palette:
     - [0.87, 0.85, 0.55]  # Normalized RGB
     - [0.87, 0.72, 0.53]
+  line_color: [0, 0, 0]
