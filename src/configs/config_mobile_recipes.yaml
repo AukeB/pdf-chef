@@ -1,6 +1,6 @@
 io:
-  output_file_name: ../pdfs/recipes.pdf
-  input_recipe_file_path: ../recipes/pompoen_risotto.json
+  output_file_name: recipes.pdf
+  input_recipe_file_path: recipes/pompoen_risotto.json
 
 document_margins:
   left: 20  # Unit: pixels
