@@ -85,13 +85,7 @@ class RecipePDFBuilder:
 
         if section_name in ["cover_image", "title"]:
             handler = section_handlers[section_name]
-
-        if section_name == "cover_image":
             handler(self.recipe[section_name])
-        elif section_name == "title":
-            handler(self.recipe[section_name])
-        else:
-            pass
 
     def build(self) -> None:
         """Render all recipe sections and save the PDF in a defined order."""
