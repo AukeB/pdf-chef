@@ -1,0 +1,19 @@
+DOCUMENT_MARGINS:
+  LEFT: 20 # Unit: pixels
+  RIGHT: 20 # Unit: pixels
+
+SECTION_MARGINS:
+  TOP: 10 # Unit: pixels
+  BOTTOM: 10 # Unit: pixels
+
+LAYOUT_COVER:
+  IMAGE_HEIGHT: 150 # Unit: pixels
+
+FONT:
+  FONT_SHIFT_FACTOR: 1.8
+
+COLORS:
+  COLOR_MODE: "repeating" # Allowed values: ["repeating"]
+  PALETTE:
+    - [0.87, 0.85, 0.55] # Normalized RGB
+    - [0.87, 0.72, 0.53]

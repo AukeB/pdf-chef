@@ -76,7 +76,6 @@ class PageBuilder:
         """Set the default font for the canvas."""
         self.canvas.setFont(self.font_name, self.font_size)
 
-
     def _measure_text_block(
         self,
         text: str,
@@ -94,7 +93,7 @@ class PageBuilder:
             font_size (int | None): Optional font size override.
 
         Returns:
-            tuple[list[str], float]: 
+            tuple[list[str], float]:
                 - Wrapped lines of text
                 - Total text height (in points)
         """
@@ -123,21 +122,18 @@ class PageBuilder:
         text_height = len(lines) * line_spacing
         return lines, text_height
 
-
     def draw_text(
         self,
         x: float,
         y: float,
         text: str,
         max_line_width: float,
-        section_counter: int,
         font_name: str | None = None,
         font_size: int | None = None,
         background_color: tuple | None = None,
         padding_top: float = 0,
         padding_bottom: float = 0,
-        spacing_font_correction_factor: float = 0,
-        offset_top: float | None = None
+        font_shift_factor: float = 0,
     ) -> float:
         """
         Draw text at a given position with word wrapping and optional background.
@@ -148,7 +144,7 @@ class PageBuilder:
 
         self.canvas.setFont(font_name, font_size)
 
-        font_spacing_correction = spacing_font_correction_factor * font_size
+        font_spacing_correction = font_shift_factor * font_size
         y_position = y - font_spacing_correction
 
         lines, text_height = self._measure_text_block(
@@ -158,11 +154,10 @@ class PageBuilder:
             font_size=font_size,
         )
 
-        block_height = text_height + padding_top + padding_bottom + font_spacing_correction
+        block_height = (
+            text_height + padding_top + padding_bottom + font_spacing_correction
+        )
         y_block = y_position - padding_top - text_height - padding_bottom
-
-        if offset_top and section_counter == 0:
-            block_height += offset_top
 
         if background_color:
             self.canvas.setFillColorRGB(*background_color)
@@ -180,9 +175,6 @@ class PageBuilder:
         for line in lines:
             self.canvas.drawString(x, y_draw, line)
             y_draw -= line_spacing
-        
-        if offset_top and section_counter == 0:
-            block_height -= offset_top
 
         return y - block_height
 

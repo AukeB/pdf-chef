@@ -16,7 +16,7 @@ class RecipePDFBuilder:
         left_margin: int = 20,
         right_margin: int = 20,
         section_spacing: int = 20,
-        spacing_font_correction_factor: float = 1.8,
+        font_shift_factor: float = 1.8,
         cover_image_offset_factor: float = 0.52,
         image_height: int = 150,
     ) -> None:
@@ -32,7 +32,7 @@ class RecipePDFBuilder:
         self.left_margin = left_margin
         self.right_margin = right_margin
         self.section_spacing = section_spacing
-        self.spacing_font_correction_factor = spacing_font_correction_factor
+        self.font_shift_factor = font_shift_factor
         self.max_line_width = (
             self.page.page_width - self.left_margin - self.right_margin
         )
@@ -45,7 +45,7 @@ class RecipePDFBuilder:
         """Load a JSON file and return its contents as a dictionary."""
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
-    
+
     def _draw_horizontal_line(self, y, color: tuple | None = None):
         """Draw a horizontal line."""
         if isinstance(color, tuple):
@@ -110,16 +110,10 @@ class RecipePDFBuilder:
         self.page.canvas.setFillColorRGB(0.87, 0.85, 0.55)
 
         self.page.canvas.rect(
-            x=0,
-            y=y,
-            width=self.page.page_width,
-            height=text_height,
-            stroke=0,
-            fill=1
+            x=0, y=y, width=self.page.page_width, height=text_height, stroke=0, fill=1
         )
 
         self.page.canvas.setFillColorRGB(0, 0, 0)
-
 
     def _draw_text(
         self,
@@ -129,7 +123,7 @@ class RecipePDFBuilder:
     ) -> None:
         """ """
         self.y_position -= 0.5 * self.section_spacing
-        spacing_font_correction = self.spacing_font_correction_factor * font_size   
+        spacing_font_correction = self.font_shift_factor * font_size
         self.y_position -= spacing_font_correction
 
         height = self.page.draw_text(
@@ -139,12 +133,12 @@ class RecipePDFBuilder:
             max_line_width=self.max_line_width,
             font_name=font_name,
             font_size=font_size,
-            measure_only=True
+            # measure_only=True
         )
 
         y_background = self.y_position - height - 0.5 * self.section_spacing
         background_height = height + self.section_spacing + spacing_font_correction
-        
+
         self._draw_background(y=y_background, text_height=background_height)
 
         self.y_position = self.page.draw_text(
@@ -167,7 +161,7 @@ class RecipePDFBuilder:
         font_name: str | None = None,
     ) -> None:
         """Draw a text block with background and spacing."""
-        spacing_font_correction = self.spacing_font_correction_factor * font_size
+        spacing_font_correction = self.font_shift_factor * font_size
 
         # Measure height using measure_only=True
         section_height = self.page.draw_text(
@@ -177,10 +171,12 @@ class RecipePDFBuilder:
             max_line_width=self.max_line_width,
             font_name=font_name,
             font_size=font_size,
-            measure_only=True,
+            # measure_only=True,
         )
-        
-        #self._draw_horizontal_line(y=)
+
+        print(section_height)
+
+        # self._draw_horizontal_line(y=)
         self.page.canvas.line(
             0,
             self.y_position - 0.5 * self.section_spacing,
@@ -188,10 +184,10 @@ class RecipePDFBuilder:
             self.y_position - 0.5 * self.section_spacing,
         )
 
-        y_section = self.y_position - section_height
+        # y_section = self.y_position - section_height
 
         # Background rectangle
-        #self.page.canvas.setFillColorRGB(*background_color)
+        # self.page.canvas.setFillColorRGB(*background_color)
         # self.page.canvas.rect(
         #     0,
         #     self.y_position
@@ -203,7 +199,7 @@ class RecipePDFBuilder:
         #     stroke=0,
         #     fill=1,
         # )
-        #self.page.canvas.setFillColorRGB(0, 0, 0)
+        # self.page.canvas.setFillColorRGB(0, 0, 0)
 
         # Draw text for real
         self.y_position = self.page.draw_text(
@@ -233,7 +229,7 @@ class RecipePDFBuilder:
         bullet_spacing_factor: float = 0.2,
     ) -> None:
         """Draw a vertical list of items with optional background."""
-        spacing_font_correction = self.spacing_font_correction_factor * font_size
+        spacing_font_correction = self.font_shift_factor * font_size
         total_height = spacing_font_correction + self.section_spacing
 
         # Measure height of all items
@@ -245,7 +241,7 @@ class RecipePDFBuilder:
                 text=text,
                 max_line_width=self.max_line_width,
                 font_size=font_size,
-                measure_only=True,
+                # measure_only=True,
             )
             total_height += (
                 self.y_position - end_y
@@ -288,7 +284,7 @@ class RecipePDFBuilder:
 
     def draw_instructions(self, instructions: list[dict], font_size: int = 12) -> None:
         """Draw recipe instructions with numbered sections and steps."""
-        self.y_position -= self.spacing_font_correction_factor * font_size
+        self.y_position -= self.font_shift_factor * font_size
 
         for section in instructions:
             section_number = section["section_number"]
