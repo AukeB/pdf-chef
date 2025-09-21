@@ -108,7 +108,7 @@ class PageBuilder:
 
         return lines, text_height
 
-    def draw_text(
+    def draw_text_block(
         self,
         text: str,
         x: float,

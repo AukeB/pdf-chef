@@ -50,6 +50,13 @@ class RecipePDFBuilder:
         y_section_divider = self.y_position
         self.page.draw_horizontal_line(y=y_section_divider)
 
+    def _draw_cover_image(
+        self,
+        image_path: str
+    ) -> None:
+        """ """
+        self.page.draw_image(image_path=image_path)
+
     def _draw_text_block(
         self,
         text: str,
@@ -63,7 +70,7 @@ class RecipePDFBuilder:
             self.section_counter % len(self.config.colors.background_color_palette)
         ]
 
-        self.y_position = self.page.draw_text(
+        self.y_position = self.page.draw_text_block(
             text=text,
             x=self.config.document_margins.left,
             y=self.y_position,
