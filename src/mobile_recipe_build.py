@@ -59,8 +59,6 @@ class RecipePDFBuilder:
         """
         Draw a styled text block with background and a horizontal divider below.
         """
-        font_name = font_name or self.config.font.font_name
-        font_size = font_size or self.config.font.font_size
         background_color = self.config.colors.background_color_palette[
             self.section_counter % len(self.config.colors.background_color_palette)
         ]
@@ -70,9 +68,10 @@ class RecipePDFBuilder:
             x=self.config.document_margins.left,
             y=self.y_position,
             background_color=background_color,
+            font_name=font_name,
+            font_size=font_size,
         )
 
-        self.page.draw_horizontal_line(y=self.y_position)
         self.section_counter += 1
 
     def add_section(self, section_name: str) -> None:

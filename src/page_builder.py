@@ -167,7 +167,10 @@ class PageBuilder:
             self.canvas.drawString(x, y_draw, line)
             y_draw -= line_height
 
-        return y - block_height
+        y_updated = y - block_height
+        self.draw_horizontal_line(y=y_updated)
+
+        return y_updated
 
     def draw_horizontal_line(
         self, y: float, line_color: Tuple[float, float, float] | None = None
