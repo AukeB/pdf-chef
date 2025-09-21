@@ -1,7 +1,7 @@
 [project]
 name = "pdf-chef"
 version = "0.1.0"
-description = "Add your description here"
+description = "Code for converting .json files into good looking pdf documents"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
