@@ -17,6 +17,7 @@ class PageBuilder:
         page_height: float = 1000 * mm,
         font_name: str = "Helvetica",
         font_size: int = 16,
+        line_spacing_factor: float = 1.2,
     ) -> None:
         """
         Initialize a PageBuilder instance.
@@ -47,6 +48,7 @@ class PageBuilder:
         self.font_size = font_size
 
         # Canvas
+        self.line_spacing_factor = line_spacing_factor
         self.canvas = self._initialize_document()
         self._set_font()
 
@@ -74,82 +76,115 @@ class PageBuilder:
         """Set the default font for the canvas."""
         self.canvas.setFont(self.font_name, self.font_size)
 
-    def draw_text(
+
+    def _measure_text_block(
         self,
-        x: float,
-        y: float,
         text: str,
+        max_line_width: float,
         font_name: str | None = None,
         font_size: int | None = None,
-    ) -> None:
+    ) -> tuple[list[str], float]:
         """
-        Draw text at a given position.
+        Measure how the text will wrap and its total height.
 
         Args:
-            x (float): X coordinate in points.
-            y (float): Y coordinate in points.
-            text (str): Text to draw.
+            text (str): Text to measure.
+            max_line_width (float): Max width before wrapping.
             font_name (str | None): Optional font override.
             font_size (int | None): Optional font size override.
-        """
-        if font_name or font_size:
-            self.canvas.setFont(
-                font_name or self.font_name, font_size or self.font_size
-            )
-
-        self.canvas.drawString(x, y, text)
-
-    def draw_text_wrapped(
-        self,
-        x: float,
-        y: float,
-        text: str,
-        max_width: float,
-        font_name: str | None = None,
-        font_size: int | None = None,
-        line_spacing_factor: float = 1.2,
-    ) -> float:
-        """
-        Draw text at a given position with word wrapping if it exceeds max_width.
-
-        Args:
-            x (float): X coordinate in points.
-            y (float): Y coordinate in points (top of text).
-            text (str): Text to draw.
-            max_width (float): Maximum width in points before wrapping.
-            font_name (str | None): Optional font override.
-            font_size (int | None): Optional font size override.
-            line_spacing (float | None): Optional line spacing override.
 
         Returns:
-            float: The new Y position after drawing the wrapped text.
+            tuple[list[str], float]: 
+                - Wrapped lines of text
+                - Total text height (in points)
         """
         font_name = font_name or self.font_name
         font_size = font_size or self.font_size
-        spacing = font_size * line_spacing_factor
+        line_spacing = font_size * self.line_spacing_factor
 
         self.canvas.setFont(font_name, font_size)
 
         words = text.split()
         current_line = ""
-        y_current = y
+        lines = []
 
         for word in words:
-            test_line = f"{current_line} {word}".strip()
-            test_width = self.canvas.stringWidth(test_line, font_name, font_size)
+            line = f"{current_line} {word}".strip()
+            line_width = self.canvas.stringWidth(line, font_name, font_size)
 
-            if test_width <= max_width:
-                current_line = test_line
+            if line_width <= max_line_width:
+                current_line = line
             else:
-                self.canvas.drawString(x, y_current, current_line)
-                y_current -= spacing
+                lines.append(current_line)
                 current_line = word
-
         if current_line:
-            self.canvas.drawString(x, y_current, current_line)
-            y_current -= spacing
+            lines.append(current_line)
 
-        return y_current
+        text_height = len(lines) * line_spacing
+        return lines, text_height
+
+
+    def draw_text(
+        self,
+        x: float,
+        y: float,
+        text: str,
+        max_line_width: float,
+        section_counter: int,
+        font_name: str | None = None,
+        font_size: int | None = None,
+        background_color: tuple | None = None,
+        padding_top: float = 0,
+        padding_bottom: float = 0,
+        spacing_font_correction_factor: float = 0,
+        offset_top: float | None = None
+    ) -> float:
+        """
+        Draw text at a given position with word wrapping and optional background.
+        """
+        font_name = font_name or self.font_name
+        font_size = font_size or self.font_size
+        line_spacing = font_size * self.line_spacing_factor
+
+        self.canvas.setFont(font_name, font_size)
+
+        font_spacing_correction = spacing_font_correction_factor * font_size
+        y_position = y - font_spacing_correction
+
+        lines, text_height = self._measure_text_block(
+            text=text,
+            max_line_width=max_line_width,
+            font_name=font_name,
+            font_size=font_size,
+        )
+
+        block_height = text_height + padding_top + padding_bottom + font_spacing_correction
+        y_block = y_position - padding_top - text_height - padding_bottom
+
+        if offset_top and section_counter == 0:
+            block_height += offset_top
+
+        if background_color:
+            self.canvas.setFillColorRGB(*background_color)
+            self.canvas.rect(
+                x=0,
+                y=y_block,
+                width=self.page_width,
+                height=block_height,
+                stroke=0,
+                fill=1,
+            )
+            self.canvas.setFillColorRGB(0, 0, 0)
+
+        y_draw = y_position - padding_top
+        for line in lines:
+            self.canvas.drawString(x, y_draw, line)
+            y_draw -= line_spacing
+        
+        if offset_top and section_counter == 0:
+            block_height -= offset_top
+
+        return y - block_height
 
     def save(self) -> None:
         """Finalize and save the PDF file."""
