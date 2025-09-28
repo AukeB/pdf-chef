@@ -85,11 +85,10 @@ class PageBuilder:
 
         self.canvas.drawImage(image_path, x_image, y_image, image_width, image_height)
 
-        y_pos -= image_height
-        y_section_divider = y_pos
+        y_section_divider = y_pos - image_height
         self.draw_horizontal_line(y=y_section_divider)
 
-        return y_pos
+        return y_section_divider
 
     def _measure_text_block(
         self,
@@ -117,29 +116,41 @@ class PageBuilder:
 
         self.canvas.setFont(font_name, font_size)
 
-        words = text.split()
+        if "\n" in text:
+            words = text.splitlines(keepends=True)
+            words[-1] += "\n"
+        else:
+            words = text.split()
+
         current_line = ""
         lines = []
+
+        print(words)
 
         for word in words:
             line = f"{current_line} {word}".strip()
             line_width = self.canvas.stringWidth(line, font_name, font_size)
 
-            if line_width <= self.max_line_width:
-                current_line = line
-            else:
+            if line_width > self.max_line_width or "\n" in word and current_line != "":
                 lines.append(current_line)
                 current_line = word
+            elif line_width <= self.max_line_width:
+                current_line = line
+
+            print(lines, current_line)
+            print()
+
         if current_line:
             lines.append(current_line)
 
-        text_height = len(lines) * line_height
+        lines = [line.rstrip("\n") for line in lines]
 
+        text_height = len(lines) * line_height
         return lines, text_height
 
     def draw_text_block(
         self,
-        text: str,
+        text: str | list,
         x: float,
         y: float,
         background_color: Tuple[float, float, float],
@@ -161,6 +172,11 @@ class PageBuilder:
         margin_top = margin_top or self.config.section_margins.top
         margin_bottom = margin_bottom or self.config.section_margins.bottom
         font_shift_factor = font_shift_factor or self.config.font.font_shift_factor
+
+        if isinstance(text, str):
+            pass
+        elif isinstance(text, list):
+            text = "\n".join(text)
 
         line_height = font_size * line_height_factor
         self.canvas.setFont(font_name, font_size)
@@ -197,7 +213,11 @@ class PageBuilder:
             self.canvas.drawString(x, y_draw, line)
             y_draw -= line_height
 
-        return y
+        y_section_divider = y - block_height
+
+        self.draw_horizontal_line(y=y_section_divider)
+
+        return y_section_divider
 
     def save(self) -> None:
         """Finalize and save the PDF file."""
