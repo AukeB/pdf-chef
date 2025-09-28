@@ -125,8 +125,6 @@ class PageBuilder:
         current_line = ""
         lines = []
 
-        print(words)
-
         for word in words:
             line = f"{current_line} {word}".strip()
             line_width = self.canvas.stringWidth(line, font_name, font_size)
@@ -136,9 +134,6 @@ class PageBuilder:
                 current_line = word
             elif line_width <= self.max_line_width:
                 current_line = line
-
-            print(lines, current_line)
-            print()
 
         if current_line:
             lines.append(current_line)
@@ -150,7 +145,7 @@ class PageBuilder:
 
     def draw_text_block(
         self,
-        text: str | list,
+        text: str | list[str],
         x: float,
         y: float,
         background_color: Tuple[float, float, float],
