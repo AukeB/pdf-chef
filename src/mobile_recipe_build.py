@@ -67,9 +67,10 @@ class RecipePDFBuilder:
             "title": lambda value: self._draw_text_block(
                 text=value, font_size=18, font_name="Helvetica-Bold"
             ),
+            "description": lambda value: self._draw_text_block(text=value),
         }
 
-        if section_name in ["cover_image", "title"]:
+        if section_name in ["cover_image", "title", "description"]:
             handler = section_handlers[section_name]
             handler(self.recipe[section_name])
 
