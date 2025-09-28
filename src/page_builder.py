@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Tuple
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import mm
+from reportlab.lib.utils import ImageReader
+
 
 from src.config_manager import Config
 
@@ -61,6 +63,33 @@ class PageBuilder:
         font_size = font_size or self.config.font.font_size
 
         self.canvas.setFont(font_name, font_size)
+
+    def draw_horizontal_line(
+        self, y: float, line_color: Tuple[float, float, float] | None = None
+    ) -> None:
+        line_color = line_color or self.config.colors.line_color
+
+        self.canvas.setStrokeColorRGB(*line_color)
+        self.canvas.line(0, y, self.config.page.width * mm, y)
+
+    def draw_image(self, image_path: str, y_pos) -> float:
+        """Draw a cover image centered on the page with a fixed height."""
+        image_height = self.config.layout_cover.image_height
+        image = ImageReader(image_path)
+        initial_image_width, initial_image_height = image.getSize()
+
+        image_scaling_factor = image_height / initial_image_height
+        image_width = initial_image_width * image_scaling_factor
+        x_image = (self.config.page.width * mm - image_width) / 2
+        y_image = y_pos - image_height
+
+        self.canvas.drawImage(image_path, x_image, y_image, image_width, image_height)
+
+        y_pos -= image_height
+        y_section_divider = y_pos
+        self.draw_horizontal_line(y=y_section_divider)
+
+        return y_pos
 
     def _measure_text_block(
         self,
@@ -163,22 +192,12 @@ class PageBuilder:
             self.canvas.setFillColorRGB(0, 0, 0)
 
         y_draw = y_position - margin_top
+
         for line in lines:
             self.canvas.drawString(x, y_draw, line)
             y_draw -= line_height
 
-        y_updated = y - block_height
-        self.draw_horizontal_line(y=y_updated)
-
-        return y_updated
-
-    def draw_horizontal_line(
-        self, y: float, line_color: Tuple[float, float, float] | None = None
-    ) -> None:
-        line_color = line_color or self.config.colors.line_color
-
-        self.canvas.setStrokeColorRGB(*line_color)
-        self.canvas.line(0, y, self.config.page.width * mm, y)
+        return y
 
     def save(self) -> None:
         """Finalize and save the PDF file."""

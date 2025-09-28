@@ -12,3 +12,6 @@ make git:
 	git add *
 	git commit -m Updated
 	git push
+
+make all:
+	make ruff clean git

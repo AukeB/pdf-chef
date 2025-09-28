@@ -2,7 +2,6 @@
 
 import json
 
-from reportlab.lib.utils import ImageReader
 from reportlab.lib.units import mm
 
 from src.page_builder import PageBuilder
@@ -32,30 +31,10 @@ class RecipePDFBuilder:
             return json.load(f)
 
     def _draw_cover_image(self, image_path: str) -> None:
-        """Draw a cover image centered on the page with a fixed height."""
-        image_height = self.config.layout_cover.image_height
-        image = ImageReader(image_path)
-        initial_image_width, initial_image_height = image.getSize()
-
-        image_scaling_factor = image_height / initial_image_height
-        image_width = initial_image_width * image_scaling_factor
-        x_image = (self.config.page.width * mm - image_width) / 2
-        y_image = self.y_position - image_height
-
-        self.page.canvas.drawImage(
-            image_path, x_image, y_image, image_width, image_height
-        )
-
-        self.y_position -= image_height
-        y_section_divider = self.y_position
-        self.page.draw_horizontal_line(y=y_section_divider)
-
-    def _draw_cover_image(
-        self,
-        image_path: str
-    ) -> None:
         """ """
-        self.page.draw_image(image_path=image_path)
+        self.y_position = self.page.draw_image(
+            image_path=image_path, y_pos=self.y_position
+        )
 
     def _draw_text_block(
         self,
