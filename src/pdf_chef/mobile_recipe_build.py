@@ -4,8 +4,8 @@ import json
 
 from reportlab.lib.units import mm
 
-from src.page_builder import PageBuilder
-from src.config_manager import Config
+from src.pdf_chef.page_builder import PageBuilder
+from src.pdf_chef.config_manager import Config
 
 
 class RecipePDFBuilder:

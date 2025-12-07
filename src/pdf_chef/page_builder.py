@@ -9,7 +9,7 @@ from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
 
 
-from src.config_manager import Config
+from src.pdf_chef.config_manager import Config
 
 
 class PageBuilder:

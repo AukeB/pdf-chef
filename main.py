@@ -1,14 +1,14 @@
 """Main module"""
 from pathlib import Path
 
-from src.config_manager import ConfigManager
-from src.mobile_recipe_build import RecipePDFBuilder
+from src.pdf_chef.config_manager import ConfigManager
+from src.pdf_chef.mobile_recipe_build import RecipePDFBuilder
 
 def main():
     """
     Main function
     """
-    config_path_mobile_recipes = Path("src/configs/config_mobile_recipes.yaml")
+    config_path_mobile_recipes = Path("src/pdf_chef/configs/config_mobile_recipes.yaml")
 
     config_manager = ConfigManager()
     config_mobile_recipes = config_manager.load_config_file(path=config_path_mobile_recipes)

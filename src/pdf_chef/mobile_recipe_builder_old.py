@@ -3,7 +3,7 @@
 import json
 
 from reportlab.lib.utils import ImageReader
-from src.page_builder import PageBuilder
+from src.pdf_chef.page_builder import PageBuilder
 
 
 class RecipePDFBuilder:
