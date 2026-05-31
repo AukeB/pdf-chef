@@ -12,8 +12,7 @@ class RecipePDFBuilder:
     """Specialized builder for recipe PDFs optimized for mobile screens."""
 
     def __init__(self, config: Config) -> None:
-        """
-        Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
+        """Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
 
         Sets up page layout, margins, and loads the recipe JSON file.
         """
@@ -31,7 +30,7 @@ class RecipePDFBuilder:
             return json.load(f)
 
     def _draw_cover_image(self, image_path: str) -> None:
-        """ """
+        """"""
         self.y_position = self.page.draw_image(
             image_path=image_path, y_pos=self.y_position
         )
@@ -42,9 +41,7 @@ class RecipePDFBuilder:
         font_name: str | None = None,
         font_size: int | None = None,
     ) -> None:
-        """
-        Draw a styled text block with background and a horizontal divider below.
-        """
+        """Draw a styled text block with background and a horizontal divider below."""
         background_color = self.config.colors.background_color_palette[
             self.section_counter % len(self.config.colors.background_color_palette)
         ]

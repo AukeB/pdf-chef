@@ -59,8 +59,7 @@ class ConfigManager:
 
     def load_config_file(self, path: str | Path) -> Config:
         path = str(path)
-        """
-        Load and validate a YAML config file.
+        """Load and validate a YAML config file.
 
         Args:
             path (str): Path to the YAML config file.

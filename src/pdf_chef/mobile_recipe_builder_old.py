@@ -20,8 +20,7 @@ class RecipePDFBuilder:
         cover_image_offset_factor: float = 0.52,
         image_height: int = 150,
     ) -> None:
-        """
-        Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
+        """Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
 
         Sets up page layout, margins, and loads the recipe JSON file.
         """
@@ -121,7 +120,7 @@ class RecipePDFBuilder:
         font_size: int,
         font_name: str | None = None,
     ) -> None:
-        """ """
+        """"""
         self.y_position -= 0.5 * self.section_spacing
         spacing_font_correction = self.font_shift_factor * font_size
         self.y_position -= spacing_font_correction

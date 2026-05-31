@@ -12,6 +12,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "docstring-tailor>=0.1.2",
     "mypy>=1.19.0",
     "ruff>=0.13.0",
 ]
