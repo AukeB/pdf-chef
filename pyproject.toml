@@ -16,3 +16,8 @@ dev = [
     "mypy>=1.19.0",
     "ruff>=0.13.0",
 ]
+
+[tool.docstring_tailor]
+line-length = 88
+style = "google"
+detect-lists = true

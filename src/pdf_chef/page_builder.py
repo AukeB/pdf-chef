@@ -100,7 +100,8 @@ class PageBuilder:
             font_size (int | None): Optional font size override.
 
         Returns:
-            tuple[list[str], float]: - Wrapped lines of text - Total text height (in points)
+            tuple[list[str], float]: - Wrapped lines of text - Total text height (in
+                points)
         """
         font_name = font_name or self.config.font.font_name
         font_size = font_size or self.config.font.font_size
