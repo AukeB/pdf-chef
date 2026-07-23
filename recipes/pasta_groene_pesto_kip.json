@@ -1,0 +1,90 @@
+{
+  "cover_image": "recipes/cover_images/pasta_groene_pesto_kip.jpg",
+  "title": "Pasta met groene pesto, kip en cherrytomaatjes",
+  "description": "Frisse pasta met groene pesto, gebakken kip en zoete cherrytomaatjes, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [134, 179, 108],
+      [96, 145, 78]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Groenten",
+      "items": [
+        "250 g cherrytomaatjes, gehalveerd"
+      ]
+    },
+    {
+      "category": "Vlees",
+      "items": [
+        "2 kipfilets, in blokjes"
+      ]
+    },
+    {
+      "category": "Algemeen",
+      "items": [
+        "400 g pasta",
+        "200 g groene pesto"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Verse basilicum (optioneel)",
+        "Zout, peper"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Olijfolie",
+        "Parmezaanse kaas, naar smaak"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Pasta koken",
+      "steps": [
+        {"step_number": 1, "text": "Breng een ruime pan gezouten water aan de kook."},
+        {"step_number": 2, "text": "Kook de pasta al dente volgens de aanwijzingen op de verpakking en giet af."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Kip bakken",
+      "steps": [
+        {"step_number": 1, "text": "Verhit olijfolie in een grote koekenpan."},
+        {"step_number": 2, "text": "Bak de kipblokjes rondom goudbruin en gaar."},
+        {"step_number": 3, "text": "Breng op smaak met zout en peper."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Tomaatjes toevoegen",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de cherrytomaatjes toe aan de pan met kip."},
+        {"step_number": 2, "text": "Bak 2–3 minuten mee tot ze net beginnen te garen."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Mengen met pesto",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de afgegoten pasta toe aan de pan."},
+        {"step_number": 2, "text": "Roer de groene pesto erdoor tot alles goed gemengd is."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep op in borden."},
+        {"step_number": 2, "text": "Werk af met verse basilicum en eventueel wat Parmezaanse kaas."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "cover_image": "recipes/cover_images/leidsche_kots.jpg",
+  "title": "Leidsche kots",
+  "description": "Klassieke Leidse studentenhap: macaroni met spinazie, spekjes, champignons en kruidenkaas, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [143, 173, 101],
+      [107, 138, 74]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Groenten",
+      "items": [
+        "500 g diepvriesspinazie",
+        "300 g champignons, in plakjes"
+      ]
+    },
+    {
+      "category": "Vlees",
+      "items": [
+        "400 g spekblokjes"
+      ]
+    },
+    {
+      "category": "Algemeen",
+      "items": [
+        "400 g macaroni",
+        "2 bakjes boursin (of andere kruidenkaas)"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Zout, peper"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Pasta koken",
+      "steps": [
+        {"step_number": 1, "text": "Breng een ruime pan gezouten water aan de kook."},
+        {"step_number": 2, "text": "Kook de macaroni al dente volgens de aanwijzingen op de verpakking en giet af."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Spinazie ontdooien",
+      "steps": [
+        {"step_number": 1, "text": "Ontdooi de diepvriesspinazie in een pan op laag vuur of in de magnetron."},
+        {"step_number": 2, "text": "Giet overtollig vocht af."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Spek en champignons bakken",
+      "steps": [
+        {"step_number": 1, "text": "Bak de spekblokjes in een droge pan krokant."},
+        {"step_number": 2, "text": "Voeg de champignons toe en bak ze 4–5 minuten mee."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Alles mengen",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de spinazie toe aan de pan met spek en champignons."},
+        {"step_number": 2, "text": "Laat het geheel net niet koken."},
+        {"step_number": 3, "text": "Roer de boursin erdoor tot een romige saus ontstaat."},
+        {"step_number": 4, "text": "Meng de macaroni erdoorheen."},
+        {"step_number": 5, "text": "Breng op smaak met zout en peper."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep direct op in diepe borden."},
+        {"step_number": 2, "text": "Serveer warm."}
+      ]
+    }
+  ]
+}

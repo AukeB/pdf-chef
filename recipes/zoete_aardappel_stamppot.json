@@ -1,0 +1,93 @@
+{
+  "cover_image": "recipes/cover_images/zoete_aardappel_stamppot.jpg",
+  "title": "Zoete aardappelstamppot met spruitjes, zongedroogde tomaat, geitenkaas en spek",
+  "description": "Romige zoete aardappelstamppot met spruitjes, zongedroogde tomaat, zachte geitenkaas en krokante spekjes, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [232, 145, 82],
+      [198, 108, 55]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Groenten",
+      "items": [
+        "1 kg zoete aardappel, geschild en in blokjes",
+        "400 g spruitjes, schoongemaakt en gehalveerd"
+      ]
+    },
+    {
+      "category": "Vlees",
+      "items": [
+        "150 g spekjes"
+      ]
+    },
+    {
+      "category": "Kaas",
+      "items": [
+        "100 g zachte geitenkaas, in stukjes"
+      ]
+    },
+    {
+      "category": "Overig",
+      "items": [
+        "60 g zongedroogde tomaten (uit olie), grof gehakt"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Versgemalen zwarte peper",
+        "Zout"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Scheutje melk",
+        "Klontje boter",
+        "Olijfolie",
+        "Zout, peper"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Zoete aardappel en spruitjes koken",
+      "steps": [
+        {"step_number": 1, "text": "Breng een ruime pan gezouten water aan de kook."},
+        {"step_number": 2, "text": "Kook de zoete aardappelblokjes 15–18 minuten tot ze zacht zijn."},
+        {"step_number": 3, "text": "Voeg de spruitjes de laatste 6–8 minuten toe en kook ze mee."},
+        {"step_number": 4, "text": "Giet af en laat goed uitstomen."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Spek bakken",
+      "steps": [
+        {"step_number": 1, "text": "Bak de spekjes in een droge koekenpan knapperig."},
+        {"step_number": 2, "text": "Schep ze eruit en laat uitlekken op keukenpapier."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Stampen en mengen",
+      "steps": [
+        {"step_number": 1, "text": "Stamp de zoete aardappel en spruitjes grof met een scheutje melk en een klontje boter."},
+        {"step_number": 2, "text": "Schep de zongedroogde tomaten en de helft van de spekjes erdoor."},
+        {"step_number": 3, "text": "Breng op smaak met flink wat versgemalen peper en zout."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep de stamppot op borden."},
+        {"step_number": 2, "text": "Verkruimel de geitenkaas erover en strooi de resterende spekjes erbij."},
+        {"step_number": 3, "text": "Serveer meteen, warm."}
+      ]
+    }
+  ]
+}

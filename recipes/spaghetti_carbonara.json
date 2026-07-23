@@ -1,0 +1,92 @@
+{
+  "cover_image": "recipes/cover_images/spaghetti_carbonara.jpg",
+  "title": "Spaghetti carbonara, traditioneel bereid",
+  "description": "Klassieke Romeinse carbonara met guanciale, eidooier, pecorino en veel versgemalen peper — zonder room, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [238, 206, 138],
+      [206, 165, 88]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Vlees",
+      "items": [
+        "200 g guanciale (of pancetta), in reepjes"
+      ]
+    },
+    {
+      "category": "Pasta",
+      "items": [
+        "400 g spaghetti"
+      ]
+    },
+    {
+      "category": "Ei & kaas",
+      "items": [
+        "4 eidooiers",
+        "1 heel ei",
+        "100 g pecorino romano, fijngeraspt"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Veel versgemalen zwarte peper"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Zout",
+        "Klein scheutje olijfolie"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Pasta koken",
+      "steps": [
+        {"step_number": 1, "text": "Breng een ruime pan gezouten water aan de kook."},
+        {"step_number": 2, "text": "Kook de spaghetti al dente volgens de aanwijzingen op de verpakking."},
+        {"step_number": 3, "text": "Bewaar voor het afgieten een kopje pastawater."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Guanciale bakken",
+      "steps": [
+        {"step_number": 1, "text": "Verhit een klein scheutje olijfolie in een grote koekenpan."},
+        {"step_number": 2, "text": "Bak de guanciale op middelhoog vuur krokant en goudbruin."},
+        {"step_number": 3, "text": "Haal de pan van het vuur zodra de spaghetti bijna klaar is."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Eiermengsel maken",
+      "steps": [
+        {"step_number": 1, "text": "Klop de eidooiers en het hele ei los in een kom."},
+        {"step_number": 2, "text": "Roer de pecorino en flink wat versgemalen peper erdoor tot een dik mengsel."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Alles mengen",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de afgegoten spaghetti toe aan de pan met guanciale (vuur uit)."},
+        {"step_number": 2, "text": "Giet het eiermengsel erover en roer snel en goed door, buiten het vuur, tot een romige saus ontstaat."},
+        {"step_number": 3, "text": "Voeg beetje bij beetje pastawater toe tot de gewenste romigheid is bereikt."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep direct op in warme borden."},
+        {"step_number": 2, "text": "Werk af met extra pecorino en versgemalen zwarte peper."}
+      ]
+    }
+  ]
+}

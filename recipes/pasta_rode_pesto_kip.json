@@ -1,0 +1,97 @@
+{
+  "cover_image": "recipes/cover_images/pasta_rode_pesto_kip.jpg",
+  "title": "Pasta met rode pesto, kip, sperziebonen en champignons",
+  "description": "Snelle pastaschotel met rode pesto, kip, sperziebonen en champignons, afgemaakt met een vleugje tabasco, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [201, 76, 62],
+      [163, 52, 44]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Groenten",
+      "items": [
+        "300 g sperziebonen, in stukjes",
+        "250 g champignons, in plakjes",
+        "1 ui, fijngesneden",
+        "2 teentjes knoflook, fijngehakt"
+      ]
+    },
+    {
+      "category": "Vlees",
+      "items": [
+        "2 kipfilets, in reepjes"
+      ]
+    },
+    {
+      "category": "Algemeen",
+      "items": [
+        "400 g pasta (bijv. penne)",
+        "200 g rode pesto"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Tabasco, naar smaak",
+        "Zout, peper"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Olijfolie",
+        "Zout, peper"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Pasta koken",
+      "steps": [
+        {"step_number": 1, "text": "Breng een ruime pan gezouten water aan de kook."},
+        {"step_number": 2, "text": "Kook de pasta al dente volgens de aanwijzingen op de verpakking en giet af."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Kip bakken",
+      "steps": [
+        {"step_number": 1, "text": "Verhit olijfolie in een grote pan of wok."},
+        {"step_number": 2, "text": "Bak de kipreepjes op middelhoog vuur rondom goudbruin en gaar."},
+        {"step_number": 3, "text": "Schep de kip eruit en zet apart."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Groenten bakken",
+      "steps": [
+        {"step_number": 1, "text": "Fruit de ui en knoflook glazig in dezelfde pan."},
+        {"step_number": 2, "text": "Voeg de sperziebonen toe en bak 5–6 minuten."},
+        {"step_number": 3, "text": "Voeg de champignons toe en bak nog 3–4 minuten mee."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Alles mengen",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de kip weer toe aan de pan met groenten."},
+        {"step_number": 2, "text": "Schep de pasta erdoor."},
+        {"step_number": 3, "text": "Roer de rode pesto erdoor tot alles goed gemengd is."},
+        {"step_number": 4, "text": "Breng op smaak met zout en peper."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Schep de pasta op borden."},
+        {"step_number": 2, "text": "Werk af met een paar druppels tabasco naar smaak."},
+        {"step_number": 3, "text": "Serveer direct."}
+      ]
+    }
+  ]
+}

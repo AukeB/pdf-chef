@@ -1,0 +1,99 @@
+{
+  "cover_image": "recipes/cover_images/pesto_burger_mozzarella.jpg",
+  "title": "Italiaanse pestoburger met mozzarella",
+  "description": "Sappige rundvleesburger met groene pesto, gesmolten mozzarella en rucola, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [176, 189, 128],
+      [128, 148, 84]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Vlees",
+      "items": [
+        "500 g rundergehakt"
+      ]
+    },
+    {
+      "category": "Kaas",
+      "items": [
+        "4 plakken mozzarella"
+      ]
+    },
+    {
+      "category": "Brood",
+      "items": [
+        "4 luxe burgerbroodjes"
+      ]
+    },
+    {
+      "category": "Saus",
+      "items": [
+        "4 el groene pesto"
+      ]
+    },
+    {
+      "category": "Groenten",
+      "items": [
+        "Handje rucola",
+        "2 tomaten, in plakjes"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Zout, peper"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Olijfolie"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Burgers vormen",
+      "steps": [
+        {"step_number": 1, "text": "Kneed het gehakt losjes met zout en peper."},
+        {"step_number": 2, "text": "Vorm er 4 gelijke burgers van."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Bakken",
+      "steps": [
+        {"step_number": 1, "text": "Verhit olijfolie in een koekenpan of grillpan op hoog vuur."},
+        {"step_number": 2, "text": "Bak de burgers 3–4 minuten per kant tot ze gaar zijn en een korstje hebben."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Kaas laten smelten",
+      "steps": [
+        {"step_number": 1, "text": "Leg een plak mozzarella op elke burger."},
+        {"step_number": 2, "text": "Zet kort een deksel op de pan tot de kaas gesmolten is."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Broodjes opmaken",
+      "steps": [
+        {"step_number": 1, "text": "Rooster de broodjes kort in de pan of oven."},
+        {"step_number": 2, "text": "Besmeer de onderkant van elk broodje met groene pesto."},
+        {"step_number": 3, "text": "Beleg met tomaat, de burger met gesmolten mozzarella en rucola."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Serveren",
+      "steps": [
+        {"step_number": 1, "text": "Sluit de broodjes en serveer direct."}
+      ]
+    }
+  ]
+}

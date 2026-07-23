@@ -1,0 +1,105 @@
+{
+  "cover_image": "recipes/cover_images/pulled_chicken_wraps.jpg",
+  "title": "Pulled chicken Mexicaanse wraps",
+  "description": "Zachte wraps met gepofte kip in een chipotlesaus, crème fraîche en avocado, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [212, 103, 71],
+      [176, 76, 54]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Vlees",
+      "items": [
+        "4 kipfilets"
+      ]
+    },
+    {
+      "category": "Groenten",
+      "items": [
+        "1 ui, grof gesneden (voor het kooknat)",
+        "1 ui, in ringen (om te fruiten)",
+        "2 teentjes knoflook",
+        "3 tomaten",
+        "1 avocado, in stukjes"
+      ]
+    },
+    {
+      "category": "Saus",
+      "items": [
+        "1 kippenbouillonblokje",
+        "Chipotlesaus, naar smaak"
+      ]
+    },
+    {
+      "category": "Overig",
+      "items": [
+        "8 kleine tortilla wraps",
+        "Crème fraîche"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Olijfolie",
+        "Zout, peper"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Kip koken",
+      "steps": [
+        {"step_number": 1, "text": "Doe de kipfilets in een pan met water, de grof gesneden ui en het kippenbouillonblokje."},
+        {"step_number": 2, "text": "Breng aan de kook en laat de kip circa 20 minuten zachtjes garen."},
+        {"step_number": 3, "text": "Haal de kip uit de pan en laat afkoelen. Bewaar het kooknat."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Tomaten koken",
+      "steps": [
+        {"step_number": 1, "text": "Kook de 3 tomaten circa 5 minuten mee in hetzelfde kooknat."},
+        {"step_number": 2, "text": "Haal ze eruit zodra ze zacht zijn."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Kip uit elkaar trekken",
+      "steps": [
+        {"step_number": 1, "text": "Trek de afgekoelde kip met twee vorken volledig uit elkaar tot pulled chicken."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Saus maken",
+      "steps": [
+        {"step_number": 1, "text": "Doe de gekookte tomaten, een bouillonblokje, chipotlesaus naar smaak en de knoflook in een blender."},
+        {"step_number": 2, "text": "Blend tot een gladde saus."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Alles samenbrengen",
+      "steps": [
+        {"step_number": 1, "text": "Fruit de uiringen in een pan met olijfolie tot ze zacht zijn."},
+        {"step_number": 2, "text": "Voeg de saus toe en laat kort inkoken."},
+        {"step_number": 3, "text": "Voeg de pulled chicken toe en meng goed door de saus."}
+      ]
+    },
+    {
+      "section_number": 6,
+      "section": "Wraps bakken en opmaken",
+      "steps": [
+        {"step_number": 1, "text": "Bak elke wrap kort aan beide kanten in een pan met een beetje olie."},
+        {"step_number": 2, "text": "Besmeer de wrap met crème fraîche."},
+        {"step_number": 3, "text": "Verdeel de avocadostukjes over de wrap."},
+        {"step_number": 4, "text": "Schep de kip met saus erop."},
+        {"step_number": 5, "text": "Vouw dicht en smullen maar."}
+      ]
+    }
+  ]
+}

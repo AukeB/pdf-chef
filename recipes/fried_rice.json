@@ -1,0 +1,95 @@
+{
+  "cover_image": "recipes/cover_images/fried_rice.jpg",
+  "title": "Fried rice, traditioneel bereid",
+  "description": "Klassieke gebakken rijst met ei, wortel en tuinerwten, afgemaakt met een scheutje sesamolie, geschikt voor 4 personen.",
+  "servings": 4,
+  "colors": {
+    "background_color_palette": [
+      [222, 168, 88],
+      [186, 128, 58]
+    ]
+  },
+  "ingredients": [
+    {
+      "category": "Groenten",
+      "items": [
+        "2 wortels, in kleine blokjes",
+        "150 g tuinerwten (diepvries)",
+        "2 lente-uitjes, in ringetjes"
+      ]
+    },
+    {
+      "category": "Ei",
+      "items": [
+        "3 eieren, losgeklopt"
+      ]
+    },
+    {
+      "category": "Algemeen",
+      "items": [
+        "500 g gekookte rijst (het liefst een dag oud, koud)",
+        "3 el sojasaus",
+        "1 teentje knoflook, fijngehakt"
+      ]
+    },
+    {
+      "category": "Kruiden",
+      "items": [
+        "Sesamolie, aan het einde",
+        "Zout, peper"
+      ]
+    },
+    {
+      "category": "Waarschijnlijk al in huis",
+      "items": [
+        "Plantaardige olie om te bakken"
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "section_number": 1,
+      "section": "Voorbereiden",
+      "steps": [
+        {"step_number": 1, "text": "Zorg dat de rijst koud en losgekookt is (het liefst van de dag ervoor)."},
+        {"step_number": 2, "text": "Snijd alle groenten fijn en klop de eieren los."}
+      ]
+    },
+    {
+      "section_number": 2,
+      "section": "Ei bakken",
+      "steps": [
+        {"step_number": 1, "text": "Verhit een scheutje plantaardige olie in een wok op hoog vuur."},
+        {"step_number": 2, "text": "Giet de losgeklopte eieren erin en roerbak tot ze net gestold zijn."},
+        {"step_number": 3, "text": "Schep het ei eruit en zet apart."}
+      ]
+    },
+    {
+      "section_number": 3,
+      "section": "Groenten bakken",
+      "steps": [
+        {"step_number": 1, "text": "Voeg opnieuw wat olie toe aan de wok."},
+        {"step_number": 2, "text": "Bak de wortel 2–3 minuten."},
+        {"step_number": 3, "text": "Voeg de tuinerwten en knoflook toe en bak nog 2 minuten mee."}
+      ]
+    },
+    {
+      "section_number": 4,
+      "section": "Rijst toevoegen",
+      "steps": [
+        {"step_number": 1, "text": "Voeg de koude rijst toe aan de wok en bak op hoog vuur, goed roerend, tot alles heet is."},
+        {"step_number": 2, "text": "Voeg de sojasaus toe en meng goed door."},
+        {"step_number": 3, "text": "Schep het gebakken ei terug in de wok en meng erdoor."}
+      ]
+    },
+    {
+      "section_number": 5,
+      "section": "Afwerken en serveren",
+      "steps": [
+        {"step_number": 1, "text": "Haal de wok van het vuur en roer een scheutje sesamolie erdoor."},
+        {"step_number": 2, "text": "Breng op smaak met zout en peper."},
+        {"step_number": 3, "text": "Werk af met de lente-ui en serveer direct."}
+      ]
+    }
+  ]
+}
