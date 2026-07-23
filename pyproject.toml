@@ -3,21 +3,36 @@ name = "pdf-chef"
 version = "0.1.0"
 description = "Code for converting .json files into good looking pdf documents"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
-    "pydantic>=2.11.9",
-    "pyyaml>=6.0.2",
-    "reportlab>=4.4.3",
+    "pydantic>=2.13.4",
+    "pyyaml>=6.0.3",
+    "reportlab>=5.0.0",
+    "pypdf>=6.14.2",
 ]
 
 [dependency-groups]
 dev = [
-    "docstring-tailor>=0.1.2",
-    "mypy>=1.19.0",
-    "ruff>=0.13.0",
+    "docstring-tailor>=0.3.0",
+    "ty>=0.0.62",
+    "ruff>=0.15.22",
 ]
 
+# UV settings
+[tool.uv]
+default-groups = ["dev"]
+
+# Docstring-tailor settings
+
 [tool.docstring_tailor]
-line-length = 88
+line-length = 80
 style = "google"
-detect-lists = true
+
+# Build settings
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdf_chef"]

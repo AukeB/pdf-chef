@@ -1,31 +1,79 @@
 io:
   output_file_path: pdfs/recipes.pdf
-  input_recipe_file_path: recipes/pompoen_risotto.json
+  input_recipe_directory: recipes
 
 page:
   width: 90 # Unit: mm
-  height: 1000 # Will be cutt off to right value after document generation. Unit: mm.
 
 document_margins:
-  left: 20  # Unit: pixels
-  right: 20  # Unit: pixels
+  left: 20  # Unit: points (1 point = 1/72 inch, the standard PDF/ReportLab unit)
+  right: 20  # Unit: points
 
 section_margins:
-  top: 10  # Unit: pixels
-  bottom: 10  # Unit: pixels
+  top: 10  # Unit: points
+  bottom: 10  # Unit: points
 
 layout_cover:
-  image_height: 150  # Unit: pixels
-
-font:
-  font_name: Helvetica
-  font_size: 16
-  font_shift_factor: 1.8
-  line_height_factor: 1.2
+  image_height: 150  # Unit: points
+  placeholder_color: [211, 211, 211]  # Light gray, shown when no cover image
 
 colors:
-  background_color_mode: "repeating"  # Allowed values: ["repeating"]
-  background_color_palette:
-    - [0.87, 0.85, 0.55]  # Normalized RGB
-    - [0.87, 0.72, 0.53]
-  line_color: [0, 0, 0]
+  line_color: [0, 0, 0]  # RGB (0-255)
+
+typography:
+  default:
+    font_name: Helvetica
+    font_size: 16
+    font_shift_factor: 1.8
+    line_height_factor: 1.2
+
+  title:
+    font_name: Times-Bold
+    font_size: 21
+
+  description:
+    font_name: Times-Italic
+    font_size: 11
+
+  ingredients:
+    bullet: "– "
+    item_indent: 12  # Unit: points
+    section_spacing: 8  # Unit: points – space above each category (except first)
+    section_header_bottom_spacing: 4  # Unit: points – space below category header before first item
+    category:
+      font_name: Times-Bold
+      font_size: 10
+    item:
+      font_name: Times-Roman
+      font_size: 10
+
+  instructions:
+    step_indent: 12  # Unit: points
+    section_spacing: 8  # Unit: points – space above each section (except first)
+    section_header_bottom_spacing: 4  # Unit: points – space below section header before first step
+    header:
+      font_name: Times-Bold
+      font_size: 10
+    step:
+      font_name: Times-Roman
+      font_size: 9
+
+toc:
+  title_text: Recepten
+  background_color: [246, 235, 214]  # Warm cream, RGB (0-255)
+  items_top_margin: 20  # Unit: points – space between title divider and first item
+  item_spacing: 10  # Unit: points – space between recipe items
+  title_font:
+    font_name: Times-Bold
+    font_size: 18
+    background_color: [199, 140, 50]  # Warm amber, RGB (0-255)
+  item_font:
+    font_name: Times-Roman
+    font_size: 12
+
+back_link:
+  text: "← Alle recepten"
+  bottom_margin: 6  # Unit: points – gap between link baseline and title block divider
+  font:
+    font_name: Times-Italic
+    font_size: 9

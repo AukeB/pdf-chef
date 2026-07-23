@@ -1,84 +1,102 @@
-"""Module for creating recipes in .pdf format optimized for mobile screen format."""
+"""Module for creating recipes in .pdf format optimized for mobile screen
+format.
+"""
 
-import json
+from pathlib import Path
 
-from reportlab.lib.units import mm
-
-from src.pdf_chef.page_builder import PageBuilder
-from src.pdf_chef.config_manager import Config
+from pdf_chef.page_builder import PageBuilder
+from pdf_chef.config_manager import Config
+from pdf_chef.recipe_renderer import RecipeRenderer
+from pdf_chef.utils.utils_file_system import load_json_file
 
 
 class RecipePDFBuilder:
-    """Specialized builder for recipe PDFs optimized for mobile screens."""
+    """Build recipe PDFs optimized for mobile screens.
+
+    Reads one or more recipes from JSON files, renders a table of contents page
+    and one page per recipe, and crops every page to its content height. Each
+    recipe page is rendered by a :class:`RecipeRenderer`.
+    """
 
     def __init__(self, config: Config) -> None:
         """Initialize a RecipePDFBuilder for mobile-optimized recipe PDFs.
 
-        Sets up page layout, margins, and loads the recipe JSON file.
+        Sets up the page builder and recipe renderer from the configuration and
+        loads the recipe JSON files into memory.
+
+        Args:
+            config (Config): Validated configuration controlling page layout,
+                margins, fonts, and colors.
         """
         self.config = config
         self.page = PageBuilder(config=self.config)
-        self.y_position = self.config.page.height * mm
-        self.section_counter: int = 0
-        self.recipe = self._load_json_file(
-            file_path=self.config.io.input_recipe_file_path
-        )
-
-    def _load_json_file(self, file_path: str) -> dict:
-        """Load a JSON file and return its contents as a dictionary."""
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    def _draw_cover_image(self, image_path: str) -> None:
-        """"""
-        self.y_position = self.page.draw_image(
-            image_path=image_path, y_pos=self.y_position
-        )
-
-    def _draw_text_block(
-        self,
-        text: str,
-        font_name: str | None = None,
-        font_size: int | None = None,
-    ) -> None:
-        """Draw a styled text block with background and a horizontal divider below."""
-        background_color = self.config.colors.background_color_palette[
-            self.section_counter % len(self.config.colors.background_color_palette)
+        self.renderer = RecipeRenderer(config=self.config, page=self.page)
+        self.y_position = self.page.page_height
+        self.recipes = [
+            load_json_file(file_path=path)
+            for path in sorted(
+                Path(self.config.io.input_recipe_directory).glob("*.json")
+            )
         ]
 
+    def _draw_toc(self) -> None:
+        """Draw the table of contents page.
+
+        Fills the page background, renders a title block, then one clickable
+        underlined entry per recipe with consistent spacing.
+        """
+        x = self.config.document_margins.left
+
+        self.page.fill_background(self.config.toc.background_color)
+
         self.y_position = self.page.draw_text_block(
-            text=text,
-            x=self.config.document_margins.left,
+            text="Recepten",
+            x=x,
             y=self.y_position,
-            background_color=background_color,
-            font_name=font_name,
-            font_size=font_size,
+            background_color=self.config.toc.title_font.background_color,
+            font_name=self.config.toc.title_font.font_name,
+            font_size=self.config.toc.title_font.font_size,
         )
 
-        self.section_counter += 1
+        y = self.y_position - self.config.toc.items_top_margin
 
-    def add_section(self, section_name: str) -> None:
-        """Add a recipe section by name using a dispatch table."""
-        section_handlers = {
-            "cover_image": lambda value: self._draw_cover_image(image_path=value),
-            "title": lambda value: self._draw_text_block(
-                text=value, font_size=18, font_name="Helvetica-Bold"
-            ),
-            "description": lambda value: self._draw_text_block(
-                text=value, font_size=12
-            ),
-            "ingredients": lambda value: self._draw_text_block(
-                text=value, font_size=10
-            ),
-        }
+        for index, recipe in enumerate(self.recipes):
+            if index > 0:
+                y -= self.config.toc.item_spacing
+            y = self.page.draw_link_text(
+                text=recipe["title"],
+                destination=f"recipe_{index}",
+                x=x,
+                y=y,
+                font_name=self.config.toc.item_font.font_name,
+                font_size=self.config.toc.item_font.font_size,
+            )
 
-        if section_name in ["cover_image", "title", "description", "ingredients"]:
-            handler = section_handlers[section_name]
-            handler(self.recipe[section_name])
+        self.y_position = y
+        self.page.draw_horizontal_line(y=self.y_position)
 
     def build(self) -> None:
-        """Render all recipe sections and save the PDF in a defined order."""
-        for section_name in self.recipe.keys():
-            self.add_section(section_name=section_name)
+        """Render a TOC page followed by one page per recipe, then save.
 
-        self.page.save()
+        The TOC links to each recipe page; every recipe page has a back link to
+        the TOC. All pages are cropped to their content height.
+        """
+        content_bottom_ys: list[float] = []
+
+        # TOC page.
+        self.y_position = self.page.page_height
+        self.page.bookmark("toc")
+        self._draw_toc()
+        content_bottom_ys.append(self.y_position)
+        self.page.new_page()
+
+        # Recipe pages.
+        for index, recipe in enumerate(self.recipes):
+            self.page.bookmark(f"recipe_{index}")
+            content_bottom_y = self.renderer.render(recipe=recipe)
+            content_bottom_ys.append(content_bottom_y)
+
+            if index < len(self.recipes) - 1:
+                self.page.new_page()
+
+        self.page.save(content_bottom_ys=content_bottom_ys)

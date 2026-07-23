@@ -5,9 +5,7 @@ from src.pdf_chef.config_manager import ConfigManager
 from src.pdf_chef.mobile_recipe_build import RecipePDFBuilder
 
 def main():
-    """
-    Main function
-    """
+    """Load the mobile recipe configuration and build the recipe PDF."""
     config_path_mobile_recipes = Path("src/pdf_chef/configs/config_mobile_recipes.yaml")
 
     config_manager = ConfigManager()
