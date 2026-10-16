@@ -39,3 +39,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pdf_chef"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]  # tests are not held to annotation rules
