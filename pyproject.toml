@@ -13,9 +13,12 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "docstring-tailor>=0.3.0",
+    "docstring-tailor>=0.4.1",
     "ty>=0.0.62",
     "ruff>=0.15.22",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pyright>=1.1.414",
 ]
 
 # UV settings

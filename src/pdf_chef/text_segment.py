@@ -14,6 +14,9 @@ class TextSegment:
         space_before (float): Extra vertical space above the segment, in points.
         font_name (str | None): Optional font name override for this segment.
         font_size (int | None): Optional font size override for this segment.
+
+    Example:
+        segment = TextSegment(text="Stir the rice", indent=12.0)
     """
 
     text: str

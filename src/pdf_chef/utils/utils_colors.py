@@ -11,11 +11,14 @@ def normalize_rgb(value: object) -> object:
             range ``[0, 255]``, or any other value which is returned unchanged.
 
     Returns:
-        object: A ``(red, green, blue)`` tuple with components in the range
-            ``[0, 1]`` when ``value`` is a 3-element sequence, otherwise
-            ``value`` unchanged.
+        normalized_color (object): A ``(red, green, blue)`` tuple with
+            components in the range ``[0, 1]`` when ``value`` is a 3-element
+            sequence, otherwise ``value`` unchanged.
     """
     if isinstance(value, (list, tuple)) and len(value) == 3:
         components = cast(Sequence[float], value)
-        return tuple(component / 255 for component in components)
+        normalized_color = tuple(component / 255 for component in components)
+
+        return normalized_color
+
     return value

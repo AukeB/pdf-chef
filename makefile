@@ -9,11 +9,29 @@ ruff:
 
 format-docstrings:
 	uv run docstring_tailor format
+	@echo "🔧 Successfully executed docstring-tailor."
 
-# Type-check code with ty
+# Static type-check code with pyright (same engine as Pylance in VS Code).
+pyright:
+	uv run pyright
+	@echo "🔍 Successfully executed pyright."
+
+# Static type-check code with ty.
 ty:
 	uv run ty check
 	@echo "🔍 Successfully executed ty."
+
+# Run tests with Pytest
+# -vvvs: Very verbose output, shows print() statements and extra test details
+# --cov=$(PROJECT_NAME): Measure test coverage for the project
+# --cov-report=term-missing: Show which lines are missing coverage
+# --cov-branch: Track branch coverage, not just line coverage
+pytest:
+	uv run pytest tests -vvvs \
+		--cov=$(PROJECT_NAME) \
+		--cov-branch \
+		--cov-report=term-missing
+	@echo "🧪 Successfully executed pytest."
 
 # Remove caches and temporary files
 clean:
@@ -27,7 +45,6 @@ clean:
 	@rm -rf artifacts
 	@echo "🧹 Successfully cleaned project."
 
-
 # Commit and push everything to git
 git:
 	git add -A
@@ -37,9 +54,11 @@ git:
 
 # Run full workflow: format, type-check, test, clean, commit
 all:
-	make format-docstrings
 	make ruff
+	make format-docstrings
+	make pyright
 	make ty
+	make pytest
 	make clean
 	make git
 	@echo "⚡ Successfully executed all tasks."
