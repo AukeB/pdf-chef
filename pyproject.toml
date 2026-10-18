@@ -19,6 +19,7 @@ dev = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "pyright>=1.1.414",
+    "deptry>=0.25.1",
 ]
 
 # UV settings
@@ -30,6 +31,11 @@ default-groups = ["dev"]
 [tool.docstring_tailor]
 line-length = 80
 style = "google"
+
+# Deptry settings
+
+[tool.deptry]
+known_first_party = ["pdf_chef"]
 
 # Build settings
 
