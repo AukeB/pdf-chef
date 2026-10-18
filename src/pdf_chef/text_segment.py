@@ -16,7 +16,7 @@ class TextSegment:
         font_size (int | None): Optional font size override for this segment.
 
     Example:
-        segment = TextSegment(text="Stir the rice", indent=12.0)
+        >>> segment = TextSegment(text="Stir the rice", indent=12.0)
     """
 
     text: str

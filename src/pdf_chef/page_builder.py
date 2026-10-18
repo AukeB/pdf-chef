@@ -29,9 +29,12 @@ class PageBuilder:
             on.
 
     Example:
-        config = ConfigManager().load_config_file(path="config.yaml") page =
-        PageBuilder(config=config) page.draw_text_block( text="Hello", x=20,
-        y=page.page_height, background_color=None ) page.save()
+        >>> config = ConfigManager().load_config_file(path="config.yaml")
+        >>> page = PageBuilder(config=config)
+        >>> page.draw_text_block(
+        ...     text="Hello", x=20, y=page.page_height, background_color=None
+        ... )
+        >>> page.save()
     """
 
     def __init__(self, config: ConfigModel) -> None:

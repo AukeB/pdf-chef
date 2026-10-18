@@ -11,8 +11,8 @@ class ConfigManager:
     """Load and validate YAML configuration files into ConfigModel objects.
 
     Example:
-        config_manager = ConfigManager() config =
-        config_manager.load_config_file(path="config.yaml")
+        >>> config_manager = ConfigManager()
+        >>> config = config_manager.load_config_file(path="config.yaml")
     """
 
     def load_config_file(self, path: str | Path) -> ConfigModel:

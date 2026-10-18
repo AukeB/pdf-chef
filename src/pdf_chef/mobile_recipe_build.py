@@ -29,8 +29,9 @@ class RecipePDFBuilder:
             sorted by file name.
 
     Example:
-        config = ConfigManager().load_config_file(path="config.yaml") builder =
-        RecipePDFBuilder(config=config) builder.build()
+        >>> config = ConfigManager().load_config_file(path="config.yaml")
+        >>> builder = RecipePDFBuilder(config=config)
+        >>> builder.build()
     """
 
     def __init__(self, config: ConfigModel) -> None:

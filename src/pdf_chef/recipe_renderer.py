@@ -32,8 +32,8 @@ class RecipeRenderer:
             RGB background colors of the current recipe.
 
     Example:
-        renderer = RecipeRenderer(config=config, page=page) content_bottom_y =
-        renderer.render(recipe=recipe)
+        >>> renderer = RecipeRenderer(config=config, page=page)
+        >>> content_bottom_y = renderer.render(recipe=recipe)
     """
 
     def __init__(self, config: ConfigModel, page: PageBuilder) -> None:
